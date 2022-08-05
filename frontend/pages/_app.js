@@ -1,15 +1,17 @@
 import "../styles/globals.css";
-//GraphQL
+//GraphQL-- Creating a provider and client
 import { Provider, createClient } from "urql";
 const client = createClient({
-  url: "http://localhost:1337/graphql",
+  url: process.env.NEXT_PUBLIC_BACKEND_URL,
 });
+//importing components
+import Navbar from "../components/Navbar";
 
 function MyApp({ Component, pageProps }) {
-  console.log(process.env.NEXT_PUBLIC_DAMN);
   return (
     <Provider value={client}>
-      <Component {...pageProps} />;
+      <Navbar />
+      <Component {...pageProps} />
     </Provider>
   );
 }
