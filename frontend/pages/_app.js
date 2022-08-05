@@ -1,7 +1,17 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+//GraphQL
+import { Provider, createClient } from "urql";
+const client = createClient({
+  url: "http://localhost:1337/graphql",
+});
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  console.log(process.env.NEXT_PUBLIC_API_URL);
+  return (
+    <Provider value={client}>
+      <Component {...pageProps} />;
+    </Provider>
+  );
 }
 
-export default MyApp
+export default MyApp;

@@ -1,0 +1,22 @@
+export const queryProducts = `
+query{
+    products{
+      data{
+        attributes{
+          title
+          description
+          slug
+          price
+          createdAt
+          image{
+            data{
+              attributes{
+                formats
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
