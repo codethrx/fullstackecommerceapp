@@ -6,7 +6,7 @@ const client = createClient({
 });
 
 function MyApp({ Component, pageProps }) {
-  console.log(process.env.NEXT_PUBLIC_API_URL);
+  console.log(process.env.NEXT_PUBLIC_DAMN);
   return (
     <Provider value={client}>
       <Component {...pageProps} />;

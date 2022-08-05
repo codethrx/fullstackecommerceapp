@@ -3,7 +3,7 @@ import React from "react";
 function Product(props) {
   const { title, price, image, slug } = props;
   const url = image?.data.attributes.formats.small.url;
-  console.log(url);
+  // console.log(url);
   return (
     <div>
       <img src={url} alt={slug} />

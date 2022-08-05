@@ -21,11 +21,12 @@ export default function Home() {
         slug={slug}
       />
     ));
-  console.log(products);
+  // console.log(products);
   //Errors and fetching states..
   if (fetching) return <p>Loading....</p>;
   if (error) return <p>Oh no!!! Error fetching data.. </p>;
   //return statements...
+
   return (
     <div>
       <Head>
