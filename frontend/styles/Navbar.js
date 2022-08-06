@@ -17,6 +17,10 @@ export const StyledNav = styled.nav`
     color: black;
     flex: 1;
     cursor: pointer;
+
+    > h1 {
+      font-family: "Inspiration", cursive;
+    }
     /* background: olive; */
   }
   ul {

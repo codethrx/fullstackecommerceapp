@@ -1,5 +1,6 @@
 import styled from "styled-components";
-export const CartItemStyles = styled.div`
+import { motion } from "framer-motion";
+export const CartItemStyles = styled(motion.div)`
   /* cursor: pointer; */
   background: white;
   border-radius: 1rem;

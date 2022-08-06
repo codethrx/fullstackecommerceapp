@@ -1,10 +1,16 @@
 import React from "react";
 //styles
 import { TotalItemsStyles } from "../styles/TotalItems";
-function TotalItems({ qty }) {
+import { motion } from "framer-motion";
+function TotalItems({ qty, pulsingAnime }) {
   return (
-    <TotalItemsStyles>
-      <p>{qty}</p>
+    <TotalItemsStyles
+      layout
+      variants={pulsingAnime}
+      initial="hidden"
+      animate="show"
+    >
+      <motion.p layout>{qty}</motion.p>
     </TotalItemsStyles>
   );
 }

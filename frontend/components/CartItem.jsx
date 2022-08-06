@@ -8,12 +8,15 @@ import {
 } from "../styles/ProductDetails";
 //context
 import useStateContext from "../libs/context";
+//anime
+import { scalingAnime } from "../libs/animes";
+import { motion } from "framer-motion";
 function CartItem({ title, price, qty, image, slug }) {
   //context
   const { onAddCartItem, onRemoveCartItem } = useStateContext();
   return (
-    <CartItemStyles>
-      <img src={image?.data.attributes.formats.small.url} alt={title} />
+    <CartItemStyles variants={scalingAnime} layout>
+      <motion.img src={image?.data.attributes.formats.small.url} alt={title} />
       <div>
         <h3>{title}</h3>
         <h4>{price}$</h4>

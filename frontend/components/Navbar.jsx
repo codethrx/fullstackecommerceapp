@@ -4,7 +4,10 @@ import useStateContext from "../libs/context";
 //import icons
 import { BsFillCartFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
-import { RiTShirtFill } from "react-icons/ri";
+// import { RiTShirtFill } from "react-icons/ri";
+// import { FaShoppingCart } from "react-icons/fa";
+// import { TbShirt } from "react-icons/tb";
+
 //styles
 import { StyledNav, NavItems, Profile } from "../styles/Navbar";
 //Link
@@ -12,6 +15,9 @@ import Link from "next/link";
 //Components
 import Cart from "./Cart";
 import TotalItems from "./TotalItems";
+//animes
+import { AnimatePresence } from "framer-motion";
+import { pulsingAnime } from "../libs/animes";
 
 function Navbar() {
   const user = false;
@@ -20,13 +26,13 @@ function Navbar() {
   return (
     <StyledNav>
       <Link href={`/`} id="logo">
-        <h1>
-          <RiTShirtFill /> ThrX
-        </h1>
+        <h1>ThrX</h1>
       </Link>
       <ul>
         <NavItems onClick={toggleCart}>
-          {totalItems >= 1 && <TotalItems qty={totalItems} />}
+          {totalItems >= 1 && (
+            <TotalItems qty={totalItems} pulsingAnime={pulsingAnime} />
+          )}
           <BsFillCartFill />
           <p>Cart</p>
         </NavItems>
@@ -43,8 +49,8 @@ function Navbar() {
             <p>User</p>
           </NavItems>
         )}
-      </ul>
-      {showCart && <Cart />}
+      </ul>{" "}
+      <AnimatePresence>{showCart && <Cart />} </AnimatePresence>
     </StyledNav>
   );
 }

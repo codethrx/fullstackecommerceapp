@@ -1,5 +1,6 @@
 import styled from "styled-components";
-export const TotalItemsStyles = styled.div`
+import { motion } from "framer-motion";
+export const TotalItemsStyles = styled(motion.div)`
   background-color: red;
   height: 20px;
   width: 20px;
@@ -13,6 +14,7 @@ export const TotalItemsStyles = styled.div`
   right: -10px;
 
   p {
-    font-size: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: bold;
   }
 `;

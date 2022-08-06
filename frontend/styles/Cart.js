@@ -1,6 +1,6 @@
 import styled from "styled-components";
-
-export const CartWrapper = styled.div`
+import { motion } from "framer-motion";
+export const CartWrapper = styled(motion.div)`
   position: fixed;
   background: rgba(0, 0, 0, 0.45);
   top: 0;
@@ -11,14 +11,14 @@ export const CartWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
-export const CartContainer = styled.div``;
-export const EmptyCartContainer = styled.div`
+export const CartContainer = styled(motion.div)``;
+export const EmptyCartContainer = styled(motion.div)`
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
-export const CartWrapperContainer = styled.div`
+export const CartWrapperContainer = styled(motion.div)`
   height: 100%;
   width: 30%;
   padding: 1rem;
@@ -26,7 +26,7 @@ export const CartWrapperContainer = styled.div`
 
   background: #fafafa;
 `;
-export const Purchase = styled.div`
+export const Purchase = styled(motion.div)`
   padding: 2rem;
   margin: 0 0.2rem;
 `;

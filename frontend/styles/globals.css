@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inspiration&display=swap");
 * {
   box-sizing: border-box;
   padding: 0;
@@ -14,6 +15,10 @@ body {
   --bg: #f1f1f1;
   margin: 0 10%;
   background-color: var(--bg);
+}
+h1 {
+  font-family: "Inspiration", cursive;
+  font-size: 2rem;
 }
 h2 {
   font-size: 1.2rem;
