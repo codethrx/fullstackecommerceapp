@@ -18,6 +18,7 @@ export const StateContext = ({ children }) => {
       cloneCartItems.reduce((currentElement, nextElement) => {
         return currentElement + nextElement.price * nextElement.qty;
       }, 0);
+
     setTotalPrice(price);
   }, [cartItems]);
   //Functions
