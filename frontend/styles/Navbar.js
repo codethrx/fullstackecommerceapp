@@ -44,6 +44,8 @@ export const NavItems = styled.div`
   :hover svg {
     transform: translateY(-5px);
   }
+  position: relative;
+  /* background-color: red; */
 `;
 export const Profile = styled.img`
   height: 27px;

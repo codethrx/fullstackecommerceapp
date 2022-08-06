@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 //Next js router
 import { useRouter } from "next/router";
 //graphql
@@ -12,10 +12,16 @@ import {
   RoundedCartDecrementBtn,
   RoundedCartIncrementBtn,
 } from "../../styles/ProductDetails";
-
+//State from context
+import useStateContext from "../../libs/context";
 function ProductDetails() {
-  //state
-  const [quantity, setQuantity] = useState(0);
+  //State from context
+  const { qty, increaseQty, decreaseQty, cartItems, onAdd, resetQty } =
+    useStateContext();
+  //side effects
+  React.useEffect(() => {
+    resetQty();
+  }, []);
   //router
   const router = useRouter();
   const { slug: query } = router.query;
@@ -26,13 +32,7 @@ function ProductDetails() {
   });
   const { fetching, error } = response;
   const data = response?.data?.products.data[0].attributes;
-  //event listeners
-  const handleIncrementClick = () => {
-    setQuantity((prevQty) => prevQty + 1);
-  };
-  const handleDecrementClick = () => {
-    setQuantity((prevQty) => (prevQty > 0 ? prevQty - 1 : 0));
-  };
+
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>Oh no error in fetching data...</p>;
 
@@ -49,17 +49,17 @@ function ProductDetails() {
             <p>{data.description}</p>
             <Quantity>
               <span>Quantity</span>
-              <RoundedCartDecrementBtn
-                fontSize={21}
-                onClick={handleDecrementClick}
-              />
-              <span>{quantity}</span>
-              <RoundedCartIncrementBtn
-                fontSize={21}
-                onClick={handleIncrementClick}
-              />
+              <RoundedCartDecrementBtn fontSize={21} onClick={decreaseQty} />
+              <span>{qty}</span>
+              <RoundedCartIncrementBtn onClick={increaseQty} fontSize={21} />
             </Quantity>
-            <AddToCartBtn>Add to Cart</AddToCartBtn>
+            <AddToCartBtn
+              onClick={() => {
+                onAdd(data, qty);
+              }}
+            >
+              Add to Cart
+            </AddToCartBtn>
           </div>
         </ProductDetailsStyles>
       )}

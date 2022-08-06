@@ -8,6 +8,7 @@ const ProductStyles = styled.div`
   position: relative;
   /* align-items: center; */
   padding: 1rem;
+  border-radius: 1rem;
 
   img {
     object-fit: cover;

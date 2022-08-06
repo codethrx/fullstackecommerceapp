@@ -1,15 +1,22 @@
 import React from "react";
+//Context
+import useStateContext from "../libs/context";
 //import icons
 import { BsFillCartFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { RiTShirtFill } from "react-icons/ri";
-
 //styles
 import { StyledNav, NavItems, Profile } from "../styles/Navbar";
 //Link
 import Link from "next/link";
+//Components
+import Cart from "./Cart";
+import TotalItems from "./TotalItems";
+
 function Navbar() {
   const user = false;
+  //Context
+  const { toggleCart, showCart, totalItems } = useStateContext();
   return (
     <StyledNav>
       <Link href={`/`} id="logo">
@@ -18,7 +25,8 @@ function Navbar() {
         </h1>
       </Link>
       <ul>
-        <NavItems>
+        <NavItems onClick={toggleCart}>
+          {totalItems >= 1 && <TotalItems qty={totalItems} />}
           <BsFillCartFill />
           <p>Cart</p>
         </NavItems>
@@ -36,6 +44,7 @@ function Navbar() {
           </NavItems>
         )}
       </ul>
+      {showCart && <Cart />}
     </StyledNav>
   );
 }
