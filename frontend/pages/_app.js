@@ -8,13 +8,17 @@ const client = createClient({
 import { StateContext } from "../libs/context";
 //importing components
 import Navbar from "../components/Navbar";
+//auth0
+import { UserProvider } from "@auth0/nextjs-auth0";
 function MyApp({ Component, pageProps }) {
   return (
     <Provider value={client}>
-      <StateContext>
-        <Navbar />
-        <Component {...pageProps} />
-      </StateContext>
+      <UserProvider>
+        <StateContext>
+          <Navbar />
+          <Component {...pageProps} />
+        </StateContext>
+      </UserProvider>
     </Provider>
   );
 }
