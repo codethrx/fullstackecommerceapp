@@ -25,7 +25,7 @@ import { useRouter } from "next/router";
 function Navbar() {
   const { user, error, isLoading } = useUser();
   const { push } = useRouter();
-  console.log(user);
+  // console.log(user);
   //Context
   const { toggleCart, showCart, totalItems } = useStateContext();
   return (
@@ -53,7 +53,7 @@ function Navbar() {
         ) : (
           <NavItems
             onClick={() => {
-              push(`/api/auth/logout`);
+              push("/profile");
             }}
           >
             <Profile src={user.picture} />

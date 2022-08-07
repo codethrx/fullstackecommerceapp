@@ -1,12 +1,16 @@
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
-
+import { getSession } from "@auth0/nextjs-auth0";
 export default async function handler(req, res) {
+  const session = getSession(req, res);
+  const user = session?.user;
+  const stripeID = user["https://localhost:3000/stripe_customer_id"];
   if (req.method === "POST") {
     try {
       const session = await stripe.checkout.sessions.create({
         submit_type: "pay",
         mode: "payment",
+        customer: stripeID,
         payment_method_types: ["card"],
         shipping_address_collection: {
           allowed_countries: ["US", "CA"],
@@ -14,8 +18,8 @@ export default async function handler(req, res) {
         allow_promotion_codes: true,
 
         shipping_options: [
-          { shipping_rate: "shr_1LU4FWKSApZ8biL62ZsAyFp5" },
-          { shipping_rate: `shr_1LU4ZIKSApZ8biL629O1hNkA` },
+          { shipping_rate: "shr_1LU7uSL4pRpYHrMsWpOZuRp5" },
+          { shipping_rate: `sshr_1LU7u5L4pRpYHrMs0zU9jY1Y` },
         ],
         line_items: req.body.map((item) => ({
           price_data: {
