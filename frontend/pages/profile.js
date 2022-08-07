@@ -10,7 +10,8 @@ export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     // access the user session
     const session = getSession(ctx.req, ctx.res);
-    const stripeId = session.user[`https://localhost:3000/stripe_customer_id`];
+    console.log(session);
+    const stripeId = session.user[`http://localhost:3000/stripe_customer_id`];
     const paymentIntents = await stripe.paymentIntents.list({
       customer: stripeId,
     });
@@ -19,8 +20,9 @@ export const getServerSideProps = withPageAuthRequired({
 });
 function profile(props) {
   const { push } = useRouter();
-  // console.log(props.orders);
-  console.log(props.user);
+  console.log(props.orders);
+  // console.log(props.user);
+
   return (
     <div>
       <AddToCartBtn

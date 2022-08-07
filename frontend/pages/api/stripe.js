@@ -4,7 +4,7 @@ import { getSession } from "@auth0/nextjs-auth0";
 export default async function handler(req, res) {
   const session = getSession(req, res);
   const user = session?.user;
-  const stripeID = user["https://localhost:3000/stripe_customer_id"];
+  const stripeID = user["http://localhost:3000/stripe_customer_id"];
   if (req.method === "POST") {
     try {
       const session = await stripe.checkout.sessions.create({

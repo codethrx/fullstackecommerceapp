@@ -6,6 +6,9 @@ import { queryProducts } from "../libs/query";
 import Product from "../components/Product";
 //styles
 import { Gallery } from "../styles/Gallery";
+//react toastify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Home() {
   //Fetching the data...
   const [results] = useQuery({ query: queryProducts });
@@ -41,6 +44,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Gallery> {mappedProducts}</Gallery>
+      <ToastContainer />
     </div>
   );
 }

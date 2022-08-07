@@ -2,6 +2,8 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 //Creating the context
 const ShopContext = createContext();
+//React toastify
+import { toast, ToastContainer } from "react-toastify";
 //Provider
 export const StateContext = ({ children }) => {
   //State
@@ -55,6 +57,7 @@ export const StateContext = ({ children }) => {
     const exist = cartItemsClone.find((e) => e.slug === slug);
     setTotalItems((prev) => (prev === 0 ? 0 : prev - 1));
     if (exist.qty - 1 === 0) {
+      toast.error(`${exist.title} removed.`);
       return setCartItems(cartItems.filter((item) => item.slug !== slug));
     }
     if (exist) {
@@ -79,6 +82,7 @@ export const StateContext = ({ children }) => {
       setCartItems(updatedCartItems);
       setTotalItems((prev) => prev + qty);
     } else {
+      toast.success(`${product.title} added`);
       setCartItems([...cartItems, { ...product, qty }]);
       setTotalItems((prev) => prev + qty);
     }
@@ -105,7 +109,10 @@ export const StateContext = ({ children }) => {
   console.log(cartItems);
 
   return (
-    <ShopContext.Provider value={shopContext}>{children}</ShopContext.Provider>
+    <ShopContext.Provider value={shopContext}>
+      {children}
+      <ToastContainer />
+    </ShopContext.Provider>
   );
 };
 //using the context
