@@ -10,28 +10,44 @@ export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     // access the user session
     const session = getSession(ctx.req, ctx.res);
-    console.log(session);
-    const stripeId = session.user[`http://localhost:3000/stripe_customer_id`];
-    const paymentIntents = await stripe.paymentIntents.list({
-      customer: stripeId,
-    });
-    return { props: { orders: paymentIntents.data } };
+    let paymentIntents;
+    if (session.user) {
+      const stripeId = session.user[`http://localhost:3000/stripe_customer_id`];
+      paymentIntents = await stripe.paymentIntents.list({
+        customer: stripeId,
+      });
+    }
+    return { props: { orders: paymentIntents ? paymentIntents.data : null } };
   },
 });
 function profile(props) {
   const { push } = useRouter();
   console.log(props.orders);
-  // console.log(props.user);
+  console.log(props.user);
 
   return (
     <div>
-      <AddToCartBtn
-        onClick={() => {
-          push(`/api/auth/logout`);
-        }}
-      >
-        Logout
-      </AddToCartBtn>
+      {props.user && (
+        <>
+          <div>
+            {props.orders &&
+              props.orders.map((o) => {
+                return (
+                  <div>
+                    <h1>{o.id}</h1>
+                  </div>
+                );
+              })}
+          </div>
+          <AddToCartBtn
+            onClick={() => {
+              push(`/api/auth/logout`);
+            }}
+          >
+            Logout
+          </AddToCartBtn>
+        </>
+      )}
     </div>
   );
 }
