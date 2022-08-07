@@ -17,10 +17,10 @@ export default async function handler(req, res) {
         },
         allow_promotion_codes: true,
 
-        shipping_options: [
-          { shipping_rate: "shr_1LU7uSL4pRpYHrMsWpOZuRp5" },
-          { shipping_rate: `sshr_1LU7u5L4pRpYHrMs0zU9jY1Y` },
-        ],
+        // shipping_options: [
+        //   { shipping_rate: "shr_1LU7uSL4pRpYHrMsWpOZuRp5" },
+        //   { shipping_rate: `shr_1LU7u5L4pRpYHrMs0zU9jY1Y` },
+        // ],
         line_items: req.body.map((item) => ({
           price_data: {
             currency: "usd",
